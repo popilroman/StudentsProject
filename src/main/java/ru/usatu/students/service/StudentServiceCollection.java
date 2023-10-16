@@ -14,8 +14,8 @@ public class StudentServiceCollection {
 
     public StudentServiceCollection() {
         students.add(new Student(1, "Tyler Durden"));
-        students.add(new Student(1, "Marla Zinger"));
-        students.add(new Student(1, "Narrator"));
+        students.add(new Student(2, "Marla Zinger"));
+        students.add(new Student(3, "Narrator"));
     }
 
     public List<Student> getStudents() {return students;}

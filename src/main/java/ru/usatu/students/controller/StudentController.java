@@ -17,7 +17,7 @@ public class StudentController {
     public @ResponseBody
     List<Student> getStudents() {return studentService.getStudents();}
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public @ResponseBody
     Student getStudent(@PathVariable int id) {return studentService.getStudent(id);}
 
@@ -25,11 +25,11 @@ public class StudentController {
     public @ResponseBody
     Student addStudent(@RequestBody Student student) {return studentService.addStudent(student);}
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public @ResponseBody
     Student editStudent(@PathVariable int id, @RequestBody String name) {return studentService.editStudent(id, name);}
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteStudent(@PathVariable int id) {studentService.deleteStudent(id);}
 
