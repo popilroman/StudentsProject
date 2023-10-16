@@ -9,7 +9,7 @@ import ru.usatu.students.model.Student;
 
 
 @Service
-public class StudentServiceCollection {
+public class StudentServiceCollection implements StudentService {
     private List<Student> students = new ArrayList<>();
 
     public StudentServiceCollection() {
