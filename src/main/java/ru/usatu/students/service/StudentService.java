@@ -5,10 +5,10 @@ import ru.usatu.students.model.Student;
 import java.util.List;
 
 public interface StudentService {
-    List<Student> getStudents();
+    List<Student> getStudents() throws Exception;
 
-    Student getStudent(int id);
-    Student addStudent(Student student);
-    Student editStudent(int id, String name);
-    void deleteStudent(int id);
+    Student getStudent(int id) throws Exception;
+    Student addStudent(Student student) throws Exception;
+    Student editStudent(int id, String name) throws Exception;
+    void deleteStudent(int id) throws Exception;
 }

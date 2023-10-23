@@ -1,21 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <students>
     <student>
         <id>1</id>
         <name>Tyler Durden</name>
     </student>
-
     <student>
         <id>2</id>
         <name>Marla Zinger</name>
     </student>
-
     <student>
         <id>3</id>
         <name>Narrator</name>
     </student>
-
     <student>
         <id>4</id>
         <name>Jack</name>
