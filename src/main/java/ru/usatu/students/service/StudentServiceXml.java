@@ -1,5 +1,6 @@
 package ru.usatu.students.service;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.usatu.students.model.Student;
 import ru.usatu.students.model.StudentList;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.util.List;
 
 @Service
+@Primary
 public class StudentServiceXml implements StudentService{
 
     private static final String FILE_PATH = "C:\\Учеба\\Java Development\\StudentsProject\\src\\main\\resources\\students.xml";
