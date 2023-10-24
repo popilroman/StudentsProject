@@ -1,5 +1,6 @@
 package ru.usatu.students.service;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.usatu.students.model.Student;
 import ru.usatu.students.repository.StudentRepository;
@@ -7,6 +8,7 @@ import ru.usatu.students.repository.StudentRepository;
 import java.util.List;
 
 @Service
+@Primary
 public class StudentServiceDb implements StudentService {
 
     private final StudentRepository studentRepository;
