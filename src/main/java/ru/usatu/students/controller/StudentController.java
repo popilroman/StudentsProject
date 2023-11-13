@@ -9,6 +9,7 @@ import ru.usatu.students.service.StudentServiceCollection;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/students")
 public class StudentController {
