@@ -42,6 +42,8 @@
                                     </div>
                                     <div>
                                         <button class="button" v-on:click="addStudent">Добавить</button>
+                                        <button class="button" v-on:click="editStudent">Редактировать</button>
+                                        <button class="button" v-on:click="deleteStudent">Удалить</button>
                                     </div>
                                 </div>
                             </div>
@@ -56,6 +58,12 @@
 	            addStudent: function (event) {
 	                this.$router.push('/addStudent');
 	            },
+	            editStudent: function (event) {
+	                this.$router.push('/editStudent');
+	            },
+	            deleteStudent: function (event) {
+	                this.$router.push('/deleteStudent');
+	            }
 	        },
 	        mounted() {
 	            axios
@@ -125,10 +133,121 @@
 	        }
         }
 
+        editStudentComponent = {
+            template: ` <div>
+                       <div class="container">
+                            <div class="add-form">
+                            <div class="title" class="caption"><h1>Форма изменения студента</h1></div>
+                            <section>
+                                <div>
+                                    <div>
+                                        <input type="text" v-model="student.id" placeholder="Номер студента">
+                                    </div>
+                                    <div>
+                                        <input type="text" v-model="student.name" placeholder="Имя студента">
+                                    </div>
+                                </div>
+                            </section>
+                       </div>
+
+                       <div class="button-container">
+                            <div class="buttons">
+                                <div>
+                                    <button class="button" v-on:click="editStudent">Сохранить</button>
+                                    <button class="button" v-on:click="cancel">Отмена</button>
+                                </div>
+                            </div>
+                       </div>
+                       </div>
+                    </div> `,
+	        data() {
+	            return {
+	                student: {
+	                    id: null,
+	                    name: null
+	                }
+	            }
+	        },
+
+	        methods: {
+	            editStudent: function (event) {
+	                axios.put('http://localhost:8080/students/' + this.student.id,
+	                    this.student.name, {
+	                        headers:{'Content-Type': 'application/json; charset=utf-8'}
+	                })
+                    .then(response => {
+                        console.log("student edited");
+                        this.$router.push('/students');
+                    })
+                    .catch(error => {
+                         alert(error);
+                    });
+	            },
+                cancel: function (event) {
+                    this.$router.push('/students');
+                }
+	        }
+        }
+
+        deleteStudentComponent = {
+            template: ` <div>
+                       <div class="container">
+                            <div class="add-form">
+                            <div class="title" class="caption"><h1>Форма удаления студента</h1></div>
+                            <section>
+                                <div>
+                                    <div>
+                                        <input type="text" v-model="student.id" placeholder="Номер студента">
+                                    </div>
+                                </div>
+                            </section>
+                       </div>
+
+                       <div class="button-container">
+                            <div class="buttons">
+                                <div>
+                                    <button class="button" v-on:click="deleteStudent">Удалить</button>
+                                    <button class="button" v-on:click="cancel">Отмена</button>
+                                </div>
+                            </div>
+                       </div>
+                       </div>
+                    </div> `,
+	        data() {
+	            return {
+	                student: {
+	                    id: null,
+	                    name: null
+	                }
+	            }
+	        },
+
+	        methods: {
+	            deleteStudent: function (event) {
+	                axios.delete('http://localhost:8080/students/' + this.student.id,
+	                    JSON.stringify(this.student), {
+	                        headers:{'Content-Type': 'application/json; charset=utf-8'}
+	                })
+                    .then(response => {
+                        console.log("student deleted");
+                        this.$router.push('/students');
+                    })
+                    .catch(error => {
+                         alert(error);
+                    });
+	            },
+                cancel: function (event) {
+                    this.$router.push('/students');
+                }
+	        }
+        }
+
         const routes = [
             {path: "/", component: studentsComponent},
             {path: '/students', component: studentsComponent},
-            {path: '/addStudent', component: addStudentComponent}
+            {path: '/addStudent', component: addStudentComponent},
+            {path: '/editStudent', component: editStudentComponent},
+            {path: '/deleteStudent', component: deleteStudentComponent}
         ]
 
         const router = new VueRouter.createRouter({
@@ -139,7 +258,9 @@
         const app = Vue.createApp({
             components: {
                 'students-component': studentsComponent,
-                'add-student-component': addStudentComponent
+                'add-student-component': addStudentComponent,
+                'edit-student-component': editStudentComponent,
+                'delete-student-component': deleteStudentComponent
             }
         })
         app.use(router)
